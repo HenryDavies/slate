@@ -30,6 +30,7 @@ export const createEditor = (): Editor => {
     onChange: () => {},
 
     apply: (op: Operation) => {
+      console.log('RUNNING APPLY FUNCTION');
       for (const ref of Editor.pathRefs(editor)) {
         PathRef.transform(ref, op)
       }
@@ -164,7 +165,7 @@ export const createEditor = (): Editor => {
         // the inline before inserting
         if (Range.isCollapsed(selection)) {
           const inline = Editor.above(editor, {
-            match: n => Editor.isInline(editor, n),
+            match: (n) => Editor.isInline(editor, n),
             mode: 'highest',
           })
 
